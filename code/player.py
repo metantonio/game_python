@@ -12,6 +12,10 @@ class Player(pygame.sprite.Sprite):
 
         # Graphic Setup
         self.import_player_assets()
+        self.status = 'down'
+        self.frame_index = 0
+        self.animation_speed = 0.15
+
         #movement
         self.direction = pygame.math.Vector2() #[x:0, y:0]
         self.speed = 5
@@ -30,7 +34,7 @@ class Player(pygame.sprite.Sprite):
         for animation in self.animations.keys():
             full_path = character_path + animation
             self.animations[animation] = import_folder(full_path)		    
-
+        #print(self.animations)
 
     def input(self):
         keys = pygame.key.get_pressed()
@@ -61,6 +65,25 @@ class Player(pygame.sprite.Sprite):
             self.attacking = True
             self.attack_time = pygame.time.get_ticks() #it's a mark time, will run only one time
             print('attack makgic')
+
+    def get_status(self):
+        #idle status
+        if self.direction.x ==0 and self.direction.y==0:
+            if not 'idle' in self.status and not 'attack' in self.status:
+                self.status = self.status + '_idle'
+
+        if self.attacking:
+            self.direction.x = 0
+            self.direction.y = 0
+            if not 'attack' in self.status:
+                if 'idle' in self.status:
+                    self.status = self.status.replace('_idle','_attack')
+                else:
+                    self.status = self.status + '_attack'
+        else:
+            if 'attack' in self.status:
+                self.status = self.status.replace('_attack','')
+
 
     def move(self, speed):
         if self.direction.magnitude() != 0:

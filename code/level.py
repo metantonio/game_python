@@ -38,7 +38,8 @@ class Level:
             'object': import_csv_layout('../map/map_LargeObjects.csv'),
         }
         graphics = {
-            'grass':import_folder('../graphics/Grass')
+            'grass':import_folder('../graphics/Grass'),
+            'objects':import_folder('../graphics/objects')
         }
 
         
@@ -57,10 +58,12 @@ class Level:
                             #create grass randomly from the files, should be visible and collisionable
                             random_grass_image = choice(graphics['grass'])
                             Tile((x,y),[self.visible_sprites, self.obstacles_sprites], 'grass', random_grass_image)
-                            pass
+                            
                         if style == 'object':
-                            # create object
-                            pass
+                            # create object, cannot be random
+                            surf = graphics['objects'][int(col)] #images has id, i want use the id but is a string
+                            Tile((x,y),[self.visible_sprites, self.obstacles_sprites], 'object', surf)
+
                 
         self.player = Player((2000,1430),[self.visible_sprites], self.obstacles_sprites)
 

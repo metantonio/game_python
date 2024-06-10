@@ -37,14 +37,15 @@ class Level:
 
         
         for style, layout in layouts.items():
-            for row_index, row in enumerate(WORLD_MAP):
+            for row_index, row in enumerate(layout):
             #print(row_index, row)
                 for col_index, col in enumerate(row):
-                    x = col_index * TILESIZE
-                    y = row_index * TILESIZE
+                    if col != '-1': #on .csv file -1 should not be walkable
+                        x = col_index * TILESIZE
+                        y = row_index * TILESIZE
 
-                    if style == 'boundary':
-                        Tile((x,y),[self.visible_sprites, self.obstacles_sprites], 'invisible')
+                        if style == 'boundary':
+                            Tile((x,y),[self.visible_sprites, self.obstacles_sprites], 'invisible')
                 
         self.player = Player((2000,1430),[self.visible_sprites], self.obstacles_sprites)
 

@@ -12,6 +12,8 @@ class Tile(pygame.sprite.Sprite):
             #do an offset
             self.rect = self.image.get_rect(topleft = (pos[0],pos[1] - TILESIZE))
         else:
-            self.sprite_type = sprite_type #to determine if is an enemy, grass, etc...
-        self.rect = self.image.get_rect(topleft = pos) #rectangle full size of image
+            self.rect = self.image.get_rect(topleft = pos) #rectangle 64x64 size of image
+
+        self.sprite_type = sprite_type #to determine if is an enemy, grass, etc...
+        
         self.hitbox = self.rect.inflate(0, -10) #change the sizer of the rectangle for the sprite, hit box is reduced or aumented, 0 on x, -5 on top and -5 on bottom

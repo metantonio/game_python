@@ -18,7 +18,7 @@ class Game:
                     sys.exit()
             
             self.screen.fill('black')
-            #debug('Hello')
+            debug('Hello') #comment this line on production
             pygame.display.update()
             self.clock.tick(FPS) #controlling the FPS with the delta time
 

@@ -10,6 +10,8 @@ class Level:
         self.visible_sprites = pygame.sprite.Group()
         self.obstacles_sprites = pygame.sprite.Group()
 
+         
+
     def run(self):
         #Comment for now
         pass

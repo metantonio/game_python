@@ -9,6 +9,7 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(topleft = pos)
 
         self.direction = pygame.math.Vector2() #[x:0, y:0]
+        self.speed = 5
 
 
     def input(self):
@@ -28,6 +29,13 @@ class Player(pygame.sprite.Sprite):
         else:
             self.direction.x = 0
 
+    def move(self, speed):
+        if self.direction.magnitude() != 0:
+            self.direction = self.direction.normalize() #normalize the direction to 1
+    	
+        # THIS HAS TO CHANGE TO HAVE SAME SPEED ON PLAYERS AND ENEMIES
+        self.rect.center += self.direction*speed ## We need to normalize direction to reduce speed on diagonal directions (trigonometry)
+
     def update(self):
         self.input()
-        
+        self.move(self.speed)

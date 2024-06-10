@@ -38,11 +38,15 @@ class Player(pygame.sprite.Sprite):
 
         #attack input
         if keys[pygame.K_SPACE] and not self.attacking:
+            self.attacking = True
+            self.attack_time = pygame.time.get_ticks() #it's a mark time, will run only one time
             print('attack') #will trigger several times if is not regulate
 
         #magic input
         if keys[pygame.K_LCTRL] and not self.attacking:
-            print('attack')
+            self.attacking = True
+            self.attack_time = pygame.time.get_ticks() #it's a mark time, will run only one time
+            print('attack makgic')
 
     def move(self, speed):
         if self.direction.magnitude() != 0:
@@ -76,6 +80,16 @@ class Player(pygame.sprite.Sprite):
                         self.hitbox.top = sprite.hitbox.bottom
 
 
+    def cooldowns(self):
+        #cooldowns of attacking
+        current_time = pygame.time.get_ticks() #it's a mark time, will run continuesly
+
+        if self.attacking: #creating a timer
+            if current_time - self.attack_time >= self.attack_cooldown:
+                self.attacking = False
+
+
     def update(self):
         self.input()
+        self.cooldowns()
         self.move(self.speed)

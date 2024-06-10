@@ -32,7 +32,12 @@ class Level:
                     self.player = Player((x,y),[self.visible_sprites], self.obstacles_sprites) """
         
         layouts = {
-            'boundary': import_csv_layout('../map/map_FloorBlocks.csv')
+            'boundary': import_csv_layout('../map/map_FloorBlocks.csv'),
+            'grass': import_csv_layout('../map/map_Grass.csv'),
+            'object': import_csv_layout('../map/map_LargeObjects.csv'),
+        }
+        graphics = {
+            'grass':import_folder('../graphics/Grass')
         }
 
         
@@ -47,6 +52,12 @@ class Level:
                         if style == 'boundary':
                             #Tile((x,y),[self.visible_sprites, self.obstacles_sprites], 'invisible') #this makes visible boundaries
                             Tile((x,y),[self.obstacles_sprites], 'invisible')
+                        if style == 'grass':
+                            #create grass
+                            pass
+                        if style == 'object':
+                            # create object
+                            pass
                 
         self.player = Player((2000,1430),[self.visible_sprites], self.obstacles_sprites)
 

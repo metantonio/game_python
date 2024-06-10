@@ -48,10 +48,19 @@ class YSortCameraGroup(pygame.sprite.Group):
         self.half_height = self.display_surface.get_size()[1] // 2
         self.offset = pygame.math.Vector2()
 
+        #creating the floor (image below the sprites)
+        self.floor_surface = pygame.image.load('../graphics/tilemap/ground.png').convert()
+        self.floor_rect = self.floor_surface.get_rect(topleft = (0,0))
+
+
     def custom_draw(self, player):
         # getting the offset to move the camera with the player
         self.offset.x = player.rect.centerx - self.half_width
         self.offset.y = player.rect.centery - self.half_height
+
+        # drawing the floor (should be before drawing the sprites)
+        floor_offset_pos = self.floor_rect.topleft - self.offset
+        self.display_surface.blit(self.floor_surface, floor_offset_pos)
 
         #for sprite in self.sprites():
         #now we sort wich sprite is drawn first, like the map, and player after

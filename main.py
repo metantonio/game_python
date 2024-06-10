@@ -1,6 +1,6 @@
 import pygame, sys
 from settings import *
-from debug import debug
+#from debug import debug
 
 class Game:
     def __init__(self):
@@ -8,6 +8,7 @@ class Game:
         #general setup
         pygame.init()
         self.screen = pygame.display.set_mode((WIDTH, HEIGTH))
+        pygame.display.set_caption('My Game') #Title of the game
         self.clock = pygame.time.Clock() #Delta time to gran same spee on any machine
 
     def run(self):
@@ -18,7 +19,7 @@ class Game:
                     sys.exit()
             
             self.screen.fill('black')
-            debug('Hello') #comment this line on production
+            #debug('Hello') #comment this line on production
             pygame.display.update()
             self.clock.tick(FPS) #controlling the FPS with the delta time
 

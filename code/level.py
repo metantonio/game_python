@@ -4,6 +4,7 @@ from tile import Tile
 from player import Player
 from debug import debug
 from support import *
+from random import choice
 
 class Level:
     def __init__(self):
@@ -53,7 +54,9 @@ class Level:
                             #Tile((x,y),[self.visible_sprites, self.obstacles_sprites], 'invisible') #this makes visible boundaries
                             Tile((x,y),[self.obstacles_sprites], 'invisible')
                         if style == 'grass':
-                            #create grass
+                            #create grass randomly from the files, should be visible and collisionable
+                            random_grass_image = choice(graphics['grass'])
+                            Tile((x,y),[self.visible_sprites, self.obstacles_sprites], 'grass', random_grass_image)
                             pass
                         if style == 'object':
                             # create object

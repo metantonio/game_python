@@ -1,5 +1,6 @@
 import pygame, sys
 from settings import *
+from debug import debug
 
 class Game:
     def __init__(self):
@@ -17,8 +18,9 @@ class Game:
                     sys.exit()
             
             self.screen.fill('black')
+            #debug('Hello')
             pygame.display.update()
-            self.clock.tick(FPS)
+            self.clock.tick(FPS) #controlling the FPS with the delta time
 
 if __name__ == '__main__':
     game = Game()

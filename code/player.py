@@ -8,9 +8,12 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.image.load('../graphics/test/player.png').convert_alpha()
         self.rect = self.image.get_rect(topleft = pos)
         self.hitbox = self.rect.inflate(0,-26) #check collision on hitbox to hide a part of the character
-
+        #movement
         self.direction = pygame.math.Vector2() #[x:0, y:0]
         self.speed = 5
+        self.attacking = False #to avoid you can attack physical and magic at the same time
+        self.attack_cooldown = 400
+        self.attack_time = None
 
         self.obstacle_sprites = obstacle_sprites
 
@@ -18,6 +21,7 @@ class Player(pygame.sprite.Sprite):
     def input(self):
         keys = pygame.key.get_pressed()
 
+        #movement
         if keys[pygame.K_UP]:
             self.direction.y = -1
         elif keys[pygame.K_DOWN]:
@@ -31,6 +35,14 @@ class Player(pygame.sprite.Sprite):
             self.direction.x = -1
         else:
             self.direction.x = 0
+
+        #attack input
+        if keys[pygame.K_SPACE] and not self.attacking:
+            print('attack') #will trigger several times if is not regulate
+
+        #magic input
+        if keys[pygame.K_LCTRL] and not self.attacking:
+            print('attack')
 
     def move(self, speed):
         if self.direction.magnitude() != 0:

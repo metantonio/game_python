@@ -1,3 +1,3 @@
 ```bash
-pip install pygame
+pip install pygame==2.5.2
 ```

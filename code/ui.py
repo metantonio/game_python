@@ -35,6 +35,7 @@ class UI:
 
         pygame.draw.rect(self.display_surface, UI_BG_COLOR, text_rect.inflate(20,20)) # draw a backgroung for text
         self.display_surface.blit(text_surf, text_rect)
+        pygame.draw.rect(self.display_surface, UI_BORDER_COLOR, text_rect.inflate(20,20), 3) # draw a backgroung for text
 
     def display(self, player):
         #pygame.draw.rect(self.display_surface, 'black', self.health_bar_rect) #needs surface, color, rectangle

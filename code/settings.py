@@ -12,6 +12,16 @@ ITEM_BOX_SIZE = 80
 UI_FONT = '../graphics/font/joystix.ttf'
 UI_FONT_SIZE = 18
 
+#General colors
+WATER_COLOR = '#71ddee'
+UI_BG_COLOR = '#222222'
+UI_BORDER_COLOR = '#111111'
+TEXT_COLOR = '#EEEEEE'
+
+# UI COLORS
+HEALTH_COLOR = 'red'
+ENERGY_COLOR = 'blue'
+UI_BORDER_COLOR_ACTIVE = 'gold'
 
 # Testing data:
 WORLD_MAP = [

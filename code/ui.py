@@ -16,6 +16,16 @@ class UI:
         #drag the bg
         pygame.draw.rect(self.display_surface, UI_BG_COLOR, bg_rect)
 
+        #converting stats to pixels
+        ratio = current / max_amount
+        current_width = bg_rect.width * ratio #obtained in pixels
+        current_rect = bg_rect.copy()
+        current_rect.width = current_width 
+
+        #drawing the bar
+        pygame.draw.rect(self.display_surface, color, current_rect)
+
+
     def display(self, player):
         #pygame.draw.rect(self.display_surface, 'black', self.health_bar_rect) #needs surface, color, rectangle
         self.show_bar(player.health, player.stats['health'], self.health_bar_rect, HEALTH_COLOR)

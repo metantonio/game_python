@@ -5,6 +5,7 @@ from player import Player
 from debug import debug
 from support import *
 from random import choice
+from weapon import Weapon
 
 class Level:
     def __init__(self):
@@ -17,7 +18,7 @@ class Level:
         self.obstacles_sprites = pygame.sprite.Group() #will help for collisions
 
         # sprite setup
-        self.create_map()
+        self.create_map()    
 
          
     def create_map(self):
@@ -65,8 +66,11 @@ class Level:
                             Tile((x,y),[self.visible_sprites, self.obstacles_sprites], 'object', surf)
 
                 
-        self.player = Player((2000,1430),[self.visible_sprites], self.obstacles_sprites)
+        self.player = Player((2000,1430),[self.visible_sprites], self.obstacles_sprites, self.create_attack)
 
+    def create_attack(self):
+        Weapon(self.player, [self.visible_sprites])
+    
     def run(self):
         # Update and draw the game
         #self.visible_sprites.draw(self.display_surface)

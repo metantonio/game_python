@@ -37,9 +37,18 @@ class UI:
         self.display_surface.blit(text_surf, text_rect)
         pygame.draw.rect(self.display_surface, UI_BORDER_COLOR, text_rect.inflate(20,20), 3) # draw a backgroung for text
 
+    def selection_box(self, left, top):
+        bg_rect = pygame.Rect(left, top, ITEM_BOX_SIZE, ITEM_BOX_SIZE) #left, top, w, h
+        pygame.draw.rect(self.display_surface, UI_BG_COLOR, bg_rect)
+        pygame.draw.rect(self.display_surface, UI_BORDER_COLOR, bg_rect, 3)
+
+    
     def display(self, player):
         #pygame.draw.rect(self.display_surface, 'black', self.health_bar_rect) #needs surface, color, rectangle
         self.show_bar(player.health, player.stats['health'], self.health_bar_rect, HEALTH_COLOR)
         self.show_bar(player.energy, player.stats['energy'], self.energy_bar_rect, ENERGY_COLOR)
 
         self.show_exp(player.exp)
+
+        self.selection_box(10, 630) #Weapon
+        self.selection_box(80, 635) #Magic

@@ -37,38 +37,39 @@ class Player(pygame.sprite.Sprite):
         #print(self.animations)
 
     def input(self):
-        keys = pygame.key.get_pressed()
+        if not self.attacking:
+            keys = pygame.key.get_pressed()
 
-        #movement
-        if keys[pygame.K_UP]:
-            self.direction.y = -1
-            self.status = 'up'
-        elif keys[pygame.K_DOWN]:
-            self.direction.y = 1
-            self.status = 'down'
-        else:
-            self.direction.y = 0
+            #movement
+            if keys[pygame.K_UP]:
+                self.direction.y = -1
+                self.status = 'up'
+            elif keys[pygame.K_DOWN]:
+                self.direction.y = 1
+                self.status = 'down'
+            else:
+                self.direction.y = 0
 
-        if keys[pygame.K_RIGHT]:
-            self.direction.x = 1
-            self.status = 'right'
-        elif keys[pygame.K_LEFT]:
-            self.direction.x = -1
-            self.status = 'left'
-        else:
-            self.direction.x = 0
+            if keys[pygame.K_RIGHT]:
+                self.direction.x = 1
+                self.status = 'right'
+            elif keys[pygame.K_LEFT]:
+                self.direction.x = -1
+                self.status = 'left'
+            else:
+                self.direction.x = 0
 
-        #attack input
-        if keys[pygame.K_SPACE] and not self.attacking:
-            self.attacking = True
-            self.attack_time = pygame.time.get_ticks() #it's a mark time, will run only one time
-            print('attack') #will trigger several times if is not regulate
+            #attack input
+            if keys[pygame.K_SPACE]:
+                self.attacking = True
+                self.attack_time = pygame.time.get_ticks() #it's a mark time, will run only one time
+                print('attack') #will trigger several times if is not regulate
 
-        #magic input
-        if keys[pygame.K_LCTRL] and not self.attacking:
-            self.attacking = True
-            self.attack_time = pygame.time.get_ticks() #it's a mark time, will run only one time
-            print('attack makgic')
+            #magic input
+            if keys[pygame.K_LCTRL]:
+                self.attacking = True
+                self.attack_time = pygame.time.get_ticks() #it's a mark time, will run only one time
+                print('attack makgic')
 
     def get_status(self):
         #idle status

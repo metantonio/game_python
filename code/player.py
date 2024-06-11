@@ -142,10 +142,6 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center = self.hitbox.center)
 
 
-
-
-
-
     def update(self):
         self.input()
         self.cooldowns()

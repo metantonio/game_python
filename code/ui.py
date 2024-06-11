@@ -42,6 +42,9 @@ class UI:
         pygame.draw.rect(self.display_surface, UI_BG_COLOR, bg_rect)
         pygame.draw.rect(self.display_surface, UI_BORDER_COLOR, bg_rect, 3)
 
+
+    def weapon_overlay(self, weapon_index):
+        self.selection_box(10, 630) #Weapon
     
     def display(self, player):
         #pygame.draw.rect(self.display_surface, 'black', self.health_bar_rect) #needs surface, color, rectangle
@@ -50,5 +53,5 @@ class UI:
 
         self.show_exp(player.exp)
 
-        self.selection_box(10, 630) #Weapon
+        self.weapon_overlay(player.weapon_index)
         self.selection_box(80, 635) #Magic

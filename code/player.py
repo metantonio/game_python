@@ -139,7 +139,7 @@ class Player(pygame.sprite.Sprite):
         
         # set the image
         self.image = animation[int(self.frame_index)]
-        self.rect = self.image.get_rect(center = self.hitbox.center)
+        self.rect = self.image.get_rect(center = self.hitbox.center) #update the rectangle of image with the center
 
 
     def update(self):

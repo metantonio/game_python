@@ -26,6 +26,12 @@ class Player(pygame.sprite.Sprite):
 
         self.obstacle_sprites = obstacle_sprites
 
+        # Weapon
+        self.weapon_index = 0 
+        self.weapon = list(weapon_data.keys())[self.weapon_index]
+        #print(self.weapon)
+
+
     def import_player_assets(self):
         character_path = '../graphics/player/' 
         self.animations = {'up': [],'down': [],'left': [],'right': [],

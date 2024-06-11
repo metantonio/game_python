@@ -6,6 +6,7 @@ from debug import debug
 from support import *
 from random import choice
 from weapon import Weapon
+from ui import UI
 
 class Level:
     def __init__(self):
@@ -22,6 +23,9 @@ class Level:
 
         # sprite setup
         self.create_map()    
+
+        # user interface
+        self.ui = UI()
 
          
     def create_map(self):
@@ -86,6 +90,7 @@ class Level:
         self.visible_sprites.custom_draw(self.player) #now the draw and camera are separated
         self.visible_sprites.update()
         #debug(self.player.direction) # See direction on coordinates
+        self.ui.display(self.player) #get information of the player in the UI
 
 class YSortCameraGroup(pygame.sprite.Group):
     def __init__(self):

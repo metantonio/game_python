@@ -31,6 +31,9 @@ class Player(pygame.sprite.Sprite):
         self.weapon = list(weapon_data.keys())[self.weapon_index]
         #print(self.weapon)
         self.destroy_attack = destroy_attack
+        self.can_switch_weapon = True
+        self.weapon_switch_time = None
+        self.switch_duration_cooldown = 200
 
 
     def import_player_assets(self):
@@ -79,6 +82,16 @@ class Player(pygame.sprite.Sprite):
                 self.attacking = True
                 self.attack_time = pygame.time.get_ticks() #it's a mark time, will run only one time
                 print('attack makgic')
+
+            if keys[pygame.K_q] and self.can_switch_weapon: #needs a timer different from attacks timer
+                self.can_switch_weapon = False
+                self.weapon_switch_time = pygame.time.get_ticks()
+
+                if self.weapon_index < list(weapon_data.keys()) - 1:
+                    self.weapon_index +=1
+                else:
+                    self.weapon_index =0
+                self.weapon = list(weapon_data.keys())[self.weapon_index]
 
     def get_status(self):
         #idle status
@@ -139,6 +152,12 @@ class Player(pygame.sprite.Sprite):
             if current_time - self.attack_time >= self.attack_cooldown:
                 self.attacking = False
                 self.destroy_attack() #destroy the weapon visually
+
+        if not self.can_switch_weapon: #creating a timer
+            if current_time - self.weapon_switch_time >= self.switch_duration_cooldown:
+                self.can_switch_weapon = True
+                #self.destroy_attack() #destroy the weapon visually
+
 
     def animate(self):
         animation = self.animations[self.status]

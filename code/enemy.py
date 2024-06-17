@@ -109,6 +109,7 @@ class Enemy(Entity):
     def get_damage(self, player, attack_type):
         # Needs a timer to hit the enemy one cycle at time
         if self.vulnerable:
+            self.direction = self.get_player_distance_direction(player)[1]
             if attack_type == 'weapon':
                 self.health -= player.get_full_weapon_damage()
             else:
@@ -120,9 +121,14 @@ class Enemy(Entity):
         if self.health <=0:
             self.kill()
 
+    def hit_reaction(self):
+        # function to push back enemies
+        if not self.vulnerable:
+            self.direction *= -self.resistance
 
     def update(self):
         #self.get_status(player)
+        self.hit_reaction()
         self.move(self.speed)
         self.animate()
         self.cooldowns()

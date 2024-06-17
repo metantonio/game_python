@@ -130,6 +130,7 @@ class Level:
         )  # now the draw and camera are separated
         self.visible_sprites.update()
         # debug(self.player.direction) # See direction on coordinates
+        self.visible_sprites.enemy_update(self.player)
         self.ui.display(self.player)  # get information of the player in the UI
 
 
@@ -163,3 +164,8 @@ class YSortCameraGroup(pygame.sprite.Group):
         for sprite in sorted(self.sprites(), key=lambda sprite: sprite.rect.centery):
             offset_pos = sprite.rect.topleft - self.offset
             self.display_surface.blit(sprite.image, offset_pos)
+
+    def enemy_update(self, player):
+        enemy_sprites = [sprite for sprite in self.sprites() if hasattr(sprite, 'sprite_type') and sprite.sprite_type == 'enemy']
+        for sprite in enemy_sprites:
+            sprite.enemy_update(player)

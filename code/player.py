@@ -218,6 +218,12 @@ class Player(Entity):
         self.rect = self.image.get_rect(center = self.hitbox.center) #update the rectangle of image with the center
 
         # flicker
+        if not self.vulnerable:
+            #flicker
+            alpha = self.wave_value() ## toggle between 0 an 255
+            self.image.set_alpha(alpha)
+        else:
+            self.image.set_alpha(255) #transparent
 
     def get_full_weapon_damage(self):
         base_damage = self.stats['attack']

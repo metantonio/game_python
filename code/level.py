@@ -134,7 +134,7 @@ class Level:
         if self.attack_sprites:
             for attack_sprite in self.attack_sprites:
                 #Check collision between sprites
-                collision_sprites = pygame.sprite.spritecollide(attack_sprite, self.attackable_sprites, True) #sprite, group, DOKILL -> return a list
+                collision_sprites = pygame.sprite.spritecollide(attack_sprite, self.attackable_sprites, False) #sprite, group, DOKILL -> return a list
                 if collision_sprites:
                     for target_sprite in collision_sprites:
                         if target_sprite.sprite_type == 'grass':

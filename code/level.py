@@ -79,7 +79,7 @@ class Level:
                                     self.player = Player((x,y),[self.visible_sprites], self.obstacles_sprites, self.create_attack, self.destroy_attack, self.create_magic)
 
                             else:
-                                Enemy('monst', (x,y), [self.visible_sprites])
+                                Enemy('squid', (x,y), [self.visible_sprites])
                 
 
     def create_attack(self):

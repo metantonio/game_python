@@ -14,11 +14,11 @@ class Player(Entity):
         # Graphic Setup
         self.import_player_assets()
         self.status = 'down'
-        self.frame_index = 0
-        self.animation_speed = 0.15
+        #self.frame_index = 0 # obtained from Entity
+        #self.animation_speed = 0.15 # obtained from Entity
 
         #movement
-        self.direction = pygame.math.Vector2() #[x:0, y:0]
+        #self.direction = pygame.math.Vector2() #[x:0, y:0] obtained from Entity
         self.speed = 5
         self.attacking = False #to avoid you can attack physical and magic at the same time
         self.attack_cooldown = 400

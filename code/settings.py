@@ -32,6 +32,13 @@ weapon_data= {
     'sai': {'cooldown': 80, 'damage':10, 'graphic': '../graphics/weapons/sai/full.png'}
 }
 
+#magic data
+magic_data = {
+    'flame': {'strength': 5, 'cost': 20, 'graphic':'../graphics/particles/flame/fire.png'},
+    'heal': {'strength': 20, 'cost': 10, 'graphic':'../graphics/particles/heal/heal.png'}
+}
+
+
 # Testing data:
 WORLD_MAP = [
     ['X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'], #from pos (0,0) to (1216, 0)

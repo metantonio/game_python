@@ -2,8 +2,9 @@ from typing import Any
 import pygame
 from settings import *
 from support import *
+from entity import Entity
 
-class Player(pygame.sprite.Sprite):
+class Player(Entity):
     def __init__(self,pos,groups, obstacle_sprites, create_attack, destroy_attack, create_magic):
         super().__init__(groups)
         self.image = pygame.image.load('../graphics/test/player.png').convert_alpha()
@@ -143,7 +144,7 @@ class Player(pygame.sprite.Sprite):
                 self.status = self.status.replace('_attack','')
 
 
-    def move(self, speed):
+    """ def move(self, speed):
         if self.direction.magnitude() != 0:
             self.direction = self.direction.normalize() #normalize the direction to 1
     	
@@ -172,7 +173,7 @@ class Player(pygame.sprite.Sprite):
                     if self.direction.y > 0: #moving down
                         self.hitbox.bottom = sprite.hitbox.top
                     if self.direction.y < 0: #moving up
-                        self.hitbox.top = sprite.hitbox.bottom
+                        self.hitbox.top = sprite.hitbox.bottom """
 
 
     def cooldowns(self):

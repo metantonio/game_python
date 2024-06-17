@@ -50,6 +50,11 @@ class Player(Entity):
         self.exp = 123
         self.speed = self.stats['speed']
 
+        # damage timer
+        self.vulnerable = True
+        self.hurt_time = None
+        self.invulnerability_duration = 500
+
 
 
     def import_player_assets(self):
@@ -90,7 +95,7 @@ class Player(Entity):
             if keys[pygame.K_SPACE]:
                 self.attacking = True
                 self.attack_time = pygame.time.get_ticks() #it's a mark time, will run only one time
-                print('attack') #will trigger several times if is not regulate
+                #print('attack') #will trigger several times if is not regulate
                 self.create_attack()
 
             #magic input
@@ -195,6 +200,10 @@ class Player(Entity):
                 self.can_switch_magic = True
                 #self.destroy_attack() #destroy the weapon visually
 
+        if not self.vulnerable:
+            if current_time - self.hurt_time >= self.invulnerability_duration:
+                self.vulnerable = True
+
 
     def animate(self):
         animation = self.animations[self.status]
@@ -208,6 +217,8 @@ class Player(Entity):
         self.image = animation[int(self.frame_index)]
         self.rect = self.image.get_rect(center = self.hitbox.center) #update the rectangle of image with the center
 
+        # flicker
+
     def get_full_weapon_damage(self):
         base_damage = self.stats['attack']
         weapon_damage = weapon_data[self.weapon]['damage']
@@ -218,4 +229,4 @@ class Player(Entity):
         self.cooldowns()
         self.get_status()
         self.animate()
-        self.move(self.speed)
+        self.move(self.stats['speed'])

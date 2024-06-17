@@ -181,7 +181,7 @@ class Player(Entity):
         current_time = pygame.time.get_ticks() #it's a mark time, will run continuesly
 
         if self.attacking: #creating a timer
-            if current_time - self.attack_time >= self.attack_cooldown:
+            if current_time - self.attack_time >= self.attack_cooldown + weapon_data[self.weapon]['cooldown']:
                 self.attacking = False
                 self.destroy_attack() #destroy the weapon visually
 
@@ -208,6 +208,10 @@ class Player(Entity):
         self.image = animation[int(self.frame_index)]
         self.rect = self.image.get_rect(center = self.hitbox.center) #update the rectangle of image with the center
 
+    def get_full_weapon_damage(self):
+        base_damage = self.stats['attack']
+        weapon_damage = weapon_data[self.weapon]['damage']
+        return base_damage + weapon_damage
 
     def update(self):
         self.input()

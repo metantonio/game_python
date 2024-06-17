@@ -22,6 +22,8 @@ class Level:
 
         # attack sprites
         self.current_attack = None
+        self.attack_sprites = pygame.sprite.Group() #group for weapons sprite attack
+        self.attackable_sprites = pygame.sprite.Group() #group for enemies tha can be attacked to check collision
 
         # sprite setup
         self.create_map()
@@ -71,7 +73,7 @@ class Level:
                             random_grass_image = choice(graphics["grass"])
                             Tile(
                                 (x, y),
-                                [self.visible_sprites, self.obstacles_sprites],
+                                [self.visible_sprites, self.obstacles_sprites, self.attackable_sprites],
                                 "grass",
                                 random_grass_image,
                             )
@@ -109,10 +111,14 @@ class Level:
                                     monster_name = "raccoon"
                                 else:
                                     monster_name = "squid"
-                                Enemy(monster_name, (x, y), [self.visible_sprites], self.obstacles_sprites)
+                                Enemy(
+                                    monster_name, 
+                                    (x, y), 
+                                    [self.visible_sprites, self.attackable_sprites], 
+                                    self.obstacles_sprites)
 
     def create_attack(self):
-        self.current_attack = Weapon(self.player, [self.visible_sprites])
+        self.current_attack = Weapon(self.player, [self.visible_sprites, self.attack_sprites])
 
     def create_magic(self, style, strength, cost):
         print(style, strength, cost)
@@ -121,6 +127,20 @@ class Level:
         if self.current_attack:
             self.current_attack.kill()
         self.current_attack = None
+
+    def player_attack_logic(self):
+        #attack sprites and collision depending of weapon
+        if self.attack_sprites:
+            for attack_sprite in self.attack_sprites:
+                #Check collision between sprites
+                collision_sprites = pygame.sprite.spritecollide(attack_sprite, self.attackable_sprites, True) #sprite, group, DOKILL -> return a list
+                if collision_sprites:
+                    for target_sprite in collision_sprites:
+                        if target_sprite.sprite_type == 'grass':
+                            target_sprite.kill() #destroy every sprite just to test
+                        else:
+                            target_sprite.get_damage(self.player, attack_sprite.sprite_type) #want to know how the player attacked                    
+
 
     def run(self):
         # Update and draw the game
@@ -131,6 +151,7 @@ class Level:
         self.visible_sprites.update()
         # debug(self.player.direction) # See direction on coordinates
         self.visible_sprites.enemy_update(self.player)
+        self.player_attack_logic()
         self.ui.display(self.player)  # get information of the player in the UI
 
 

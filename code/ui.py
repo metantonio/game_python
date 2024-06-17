@@ -44,19 +44,23 @@ class UI:
         self.display_surface.blit(text_surf, text_rect)
         pygame.draw.rect(self.display_surface, UI_BORDER_COLOR, text_rect.inflate(20,20), 3) # draw a backgroung for text
 
-    def selection_box(self, left, top):
+    def selection_box(self, left, top, has_switched):
         bg_rect = pygame.Rect(left, top, ITEM_BOX_SIZE, ITEM_BOX_SIZE) #left, top, w, h
         pygame.draw.rect(self.display_surface, UI_BG_COLOR, bg_rect)
-        pygame.draw.rect(self.display_surface, UI_BORDER_COLOR, bg_rect, 3)
+        if has_switched:
+            # When you change the weapon a highlight will be displayed
+            pygame.draw.rect(self.display_surface, UI_BORDER_COLOR_ACTIVE, bg_rect, 3)
+        else:
+            pygame.draw.rect(self.display_surface, UI_BORDER_COLOR, bg_rect, 3)
         return bg_rect
 
 
-    def weapon_overlay(self, weapon_index):
-        bg_rect = self.selection_box(10, 630) #Weapon rectangle position where it will be displayed
+    def weapon_overlay(self, weapon_index, has_switched):
+        bg_rect = self.selection_box(10, 630, has_switched) #Weapon rectangle position where it will be displayed
         weapon_surf = self.weapon_graphics[weapon_index] #selection of weapon graphic for surfrace
         weapon_rect = weapon_surf.get_rect(center=bg_rect.center)
 
-        self.display_surface.blit(weapon_surf, weapon_rect)
+        self.display_surface.blit(weapon_surf, weapon_rect) #display primary weapon (remember that can change weapons with q button)
     
     def display(self, player):
         #pygame.draw.rect(self.display_surface, 'black', self.health_bar_rect) #needs surface, color, rectangle
@@ -65,5 +69,5 @@ class UI:
 
         self.show_exp(player.exp)
 
-        self.weapon_overlay(player.weapon_index)
-        self.selection_box(80, 635) #Magic
+        self.weapon_overlay(player.weapon_index, not player.can_switch_weapon)
+        #self.selection_box(80, 635, player.can_switch_weapon) #Magic

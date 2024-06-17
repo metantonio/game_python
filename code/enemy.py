@@ -95,6 +95,14 @@ class Enemy(Entity):
         self.image = animation[int(self.frame_index)]
         self.rect = self.image.get_rect(center=self.hitbox.center)
 
+        # Adding flickering visuals when enemy is attacked
+        if not self.vulnerable:
+            #flicker
+            alpha = self.wave_value() ## toggle between 0 an 255
+            self.image.set_alpha(alpha)
+        else:
+            self.image.set_alpha(255) #transparent
+
     def cooldowns(self):
         current_time = pygame.time.get_ticks()
         if not self.can_attack:            

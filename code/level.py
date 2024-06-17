@@ -7,6 +7,7 @@ from support import *
 from random import choice
 from weapon import Weapon
 from ui import UI
+from enemy import Enemy
 
 class Level:
     def __init__(self):
@@ -44,6 +45,7 @@ class Level:
             'boundary': import_csv_layout('../map/map_FloorBlocks.csv'),
             'grass': import_csv_layout('../map/map_Grass.csv'),
             'object': import_csv_layout('../map/map_Objects.csv'),
+            'entities': import_csv_layout('../map/map_Entities.csv')
         }
         graphics = {
             'grass':import_folder('../graphics/Grass'),
@@ -72,8 +74,13 @@ class Level:
                             surf = graphics['objects'][int(col)] #images has id, i want use the id but is a string
                             Tile((x,y),[self.visible_sprites, self.obstacles_sprites], 'object', surf)
 
+                        if style == 'entities':
+                            if col == '394': # player is defined with id 394 from Tiles
+                                    self.player = Player((x,y),[self.visible_sprites], self.obstacles_sprites, self.create_attack, self.destroy_attack, self.create_magic)
+
+                            else:
+                                Enemy('monst', (x,y), [self.visible_sprites])
                 
-        self.player = Player((2000,1430),[self.visible_sprites], self.obstacles_sprites, self.create_attack, self.destroy_attack, self.create_magic)
 
     def create_attack(self):
         self.current_attack = Weapon(self.player, [self.visible_sprites])

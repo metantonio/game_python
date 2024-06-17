@@ -38,6 +38,13 @@ magic_data = {
     'heal': {'strength': 20, 'cost': 10, 'graphic':'../graphics/particles/heal/heal.png'}
 }
 
+# enemy data
+monster_data = {
+    'squid': {'health': 100, 'exp': 100, 'damage': 20, 'attack_type': 'slash', 'attack_sound':'../audio/attack/slash.wav'},
+    'raccoon': {'health': 300, 'exp': 250, 'damage': 40, 'attack_type': 'claw', 'attack_sound':'../audio/attack/claw.wav'},
+    'spirit': {'health': 100, 'exp': 110, 'damage': 8, 'attack_type': 'thunder', 'attack_sound':'../audio/attack/fireball.wav'},
+    'squid': {'health': 70, 'exp': 120, 'damage': 6, 'attack_type': 'leaf_attack', 'attack_sound':'../audio/attack/slash.wav'}
+}
 
 # Testing data:
 WORLD_MAP = [

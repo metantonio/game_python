@@ -58,6 +58,10 @@ class Player(Entity):
         self.hurt_time = None
         self.invulnerability_duration = 500
 
+        # import a sound
+        self.weapon_attack_sound = pygame.mixer.Sound('../audio/sword.wav')
+        self.weapon_attack_sound.set_volume(0.4)
+
 
 
     def import_player_assets(self):
@@ -100,6 +104,7 @@ class Player(Entity):
                 self.attack_time = pygame.time.get_ticks() #it's a mark time, will run only one time
                 #print('attack') #will trigger several times if is not regulate
                 self.create_attack()
+                self.weapon_attack_sound.play()
 
             #magic input
             if keys[pygame.K_LCTRL]:

@@ -24,9 +24,9 @@ class MagicPlayer:
             # Get the direction of the attack
             if player.status.split('_')[0] == 'right':
                 direction = pygame.math.Vector2(1,0)
-            elif player.stats.split('_')[0] == 'left':
+            elif player.status.split('_')[0] == 'left':
                 direction = pygame.math.Vector2(-1,0)
-            elif player.stats.split('_')[0] == 'up':
+            elif player.status.split('_')[0] == 'up':
                 direction = pygame.math.Vector2(0,-1)
             else:
                 direction = pygame.math.Vector2(0,1)

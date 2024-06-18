@@ -12,6 +12,9 @@ class MagicPlayer:
                 # dont heal more than max health bar:
                 if player.health >= player.stats['health']:
                     player.health = player.stats['health']
+                # add particles
+                self.animation_player.create_particles('aura', player.rect.center, groups)
+                self.animation_player.create_particles('heal', player.rect.center, groups)
 
         def flame(self):
             pass

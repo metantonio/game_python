@@ -6,7 +6,7 @@ class Tile(pygame.sprite.Sprite):
         super().__init__(groups)
         #self.image = pygame.image.load('../graphics/test/rock.png').convert_alpha() #testing porpouse
         self.image = surface
-
+        y_offset = HITBOX_OFFSET[sprite_type]
         #there are large object (bigger than 64x64) that are 64x128 or 128x128, we want use the left-center and not left-top as (0,0)
         if sprite_type == 'object':
             #do an offset
@@ -16,4 +16,4 @@ class Tile(pygame.sprite.Sprite):
 
         self.sprite_type = sprite_type #to determine if is an enemy, grass, etc...
         
-        self.hitbox = self.rect.inflate(0, -10) #change the sizer of the rectangle for the sprite, hit box is reduced or aumented, 0 on x, -5 on top and -5 on bottom
+        self.hitbox = self.rect.inflate(0, y_offset) #change the sizer of the rectangle for the sprite, hit box is reduced or aumented, 0 on x, -5 on top and -5 on bottom

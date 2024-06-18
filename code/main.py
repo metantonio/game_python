@@ -26,7 +26,8 @@ class Game:
                     if event.key == pygame.K_m:
                         self.level.toggle_menu()
             
-            self.screen.fill('black')
+            #self.screen.fill('black') #default color when map ends
+            self.screen.fill(WATER_COLOR)
             #debug('Hello') #comment this line on production
             self.level.run()
             pygame.display.update()

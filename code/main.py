@@ -20,6 +20,11 @@ class Game:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
+                # In case any button is pressed
+                if event.type == pygame.KEYDOWN:
+                    # if is the M button
+                    if event.key == pygame.K_m:
+                        self.level.toggle_menu()
             
             self.screen.fill('black')
             #debug('Hello') #comment this line on production

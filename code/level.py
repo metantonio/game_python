@@ -10,12 +10,14 @@ from ui import UI
 from enemy import Enemy
 from particles import AnimationPlayer
 from magic import MagicPlayer
+from upgrade import Upgrade
 
 class Level:
     def __init__(self):
 
         # get the thisplay surface
         self.display_surface = pygame.display.get_surface()
+        self.game_paused = False
 
         # sprites group setup
         self.visible_sprites = YSortCameraGroup()
@@ -31,6 +33,7 @@ class Level:
 
         # user interface
         self.ui = UI()
+        self.upgrade = Upgrade(self.player)
 
         # particles
         self.animation_player = AnimationPlayer()
@@ -174,17 +177,34 @@ class Level:
     def add_exp(self, amount):
         self.player.exp += amount
 
+    def toggle_menu(self):
+        self.game_paused = not self.game_paused
+
     def run(self):
+        # Block of thing that always gonna be displayed
         # Update and draw the game
         # self.visible_sprites.draw(self.display_surface)
         self.visible_sprites.custom_draw(
             self.player
-        )  # now the draw and camera are separated
-        self.visible_sprites.update()
-        # debug(self.player.direction) # See direction on coordinates
-        self.visible_sprites.enemy_update(self.player)
-        self.player_attack_logic()
+        )
         self.ui.display(self.player)  # get information of the player in the UI
+
+        #Display only is game is paused or not paused
+        if self.game_paused:
+            self.upgrade.display()
+            #display menu
+
+        else:
+            # now the draw and camera are separated
+            self.visible_sprites.update()
+            #run the game
+            # debug(self.player.direction) # See direction on coordinates
+            self.visible_sprites.enemy_update(self.player)
+            self.player_attack_logic()
+        
+        
+        
+        
 
 
 class YSortCameraGroup(pygame.sprite.Group):

@@ -62,6 +62,7 @@ __pycache__/
 database.database
 database.db
 build/
+__pycache__/
 
 # ignore the dist directory were our bundle files are going to be
 !.gitkeep

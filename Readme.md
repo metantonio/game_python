@@ -24,7 +24,11 @@ And execute:
 python main.py
 ```
 
-## Create a .exe file
+## To play directly from the .exe file
+
+Download the .exe file [here](./dist/main.exe)
+
+## Create a .exe file yourself
 
 Install libraries: 
 

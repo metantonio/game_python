@@ -1,3 +1,9 @@
+# A Basic Python Game
+<!-- Sección portada del repositorio -->
+<a href="#">
+    <img src="./image.jpg" />
+</a>
+
 ## To play directly from the Python script
 
 Install libraries: 

@@ -51,3 +51,29 @@ pyinstaller --onefile --log-level=DEBUG ./code/main.py
 ```
 
 You should find the .exe file at **dist** folder
+
+# Controls
+
+## Movement
+
+Use **arrow** keys
+
+## Physical attack
+
+Use **SPACE** bar
+
+## Magic attack
+
+Use left **Control** button
+
+## Change Physical Weapon
+
+Use **Q**
+
+## Change Magic spell
+
+Use **E**
+
+## Upgrade Stats Menu / Close Menu
+
+Use **M**

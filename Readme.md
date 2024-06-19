@@ -26,7 +26,7 @@ python main.py
 
 ## To play directly from the .exe file
 
-Download the .exe file [here](./dist/main.exe)
+Download the .exe file [here](https://github.com/metantonio/game_python/raw/master/dist/main.exe)
 
 ## Create a .exe file yourself
 

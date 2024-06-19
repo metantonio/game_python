@@ -4,6 +4,11 @@
     <img src="./image.jpg" />
 </a>
 
+## To play directly from the .exe file
+
+Download the .exe file [here](https://github.com/metantonio/game_python/raw/master/dist/main.exe)
+
+
 ## To play directly from the Python script
 
 Install libraries: 
@@ -24,9 +29,6 @@ And execute:
 python main.py
 ```
 
-## To play directly from the .exe file
-
-Download the .exe file [here](https://github.com/metantonio/game_python/raw/master/dist/main.exe)
 
 ## Create a .exe file yourself
 
